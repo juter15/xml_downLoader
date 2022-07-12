@@ -1,0 +1,6 @@
+
+server:
+  port: 9080
+
+xml:
+  path: ${XML_PATH:/home/agwems/data/xmlfiles/}
