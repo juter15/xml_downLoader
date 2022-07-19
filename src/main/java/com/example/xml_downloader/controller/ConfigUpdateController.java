@@ -10,9 +10,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,25 +24,23 @@ import java.nio.file.Paths;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-public class XmlDownLoadController {
+public class ConfigUpdateController {
     private final FileReturnService fileReturnService;
-    @Value("${path.xml}")
-    private  String path;
+    @Value("${path.soft}")
+    private String path;
 
-    @GetMapping("/ajax/vgw_dbload")
-    public ResponseEntity createXml(
-            @RequestParam("conffile") String file,
-            @RequestParam("device") String tId,
-            @RequestParam("nojson") String noJson,
-            @RequestParam("mixvendor") String type
-    )  {
+    @GetMapping("/software/{fileName}")
+    public ResponseEntity configUpdate(
+            @PathVariable String fileName
+    )
+    {
+        log.info("fileName: {}", fileName);
+        String filePath = path + "/" + fileName;
+        log.info("filePath: {}", filePath);
 
-            String xmlPath = path + tId + "/current.xml";
-            Path path = Paths.get(xmlPath);
-
-            return fileReturnService.fileReturn(path);
-
-
+        Path path = Paths.get(filePath);
+        log.info("path: {}", path);
+        return fileReturnService.fileReturn(path);
 
     }
 }

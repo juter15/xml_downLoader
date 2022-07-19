@@ -2,5 +2,7 @@
 server:
   port: 9080
 
-xml:
-  path: ${XML_PATH:/data/xml/}
+path:
+  xml: ${XML_PATH:/data/xml/}
+#  soft: ${XML_PATH:/data/soft/}
+  soft: ${XML_PATH:/data/software/}

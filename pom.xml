@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.example</groupId>
     <artifactId>xml_downloader</artifactId>
-    <version>0718</version>
+    <version>0719</version>
     <name>xml_downloader</name>
     <description>xml_downloader</description>
     <properties>
